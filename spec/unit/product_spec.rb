@@ -1,23 +1,30 @@
 require_relative "../../lib/product.rb"
 
 RSpec.describe Product do
-  let(:price) { 12.11 }
+  let(:price) { 12 }
+  let(:product_with_price) { Product.new(name: nil, price: price) }
+  let(:amount) { 2 }
 
-  before(:each) do
-
-  end
+  before { @@id = 0 }
 
   it "has 2 params" do
     expect{
-      Product.new(name: nil, price: price)
+      product_with_price
     }.to_not raise_error(ArgumentError)
   end
 
 # .name -> metoda klasowa, #name -> metoda instancyjna
   context "#id" do
     it "returns id when product is generated" do
-      product = Product.new(name: nil, price: price)
-      expect(product.id).to eql(1)
+      product_with_price
+      expect(product_with_price.id).to eql(1)
+    end
+  end
+
+  context ".discount" do
+    it "compute discount of the price" do
+      puts product_with_price
+      expect(product_with_price.discount(price, amount)).to eql(10)
     end
   end
 
@@ -29,7 +36,7 @@ RSpec.describe Product do
 
   context "#price" do
     it "returns 12 when 12 is given" do
-      expect(Product.new(name: nil, price: 12).price).to eql(12)
+      expect(product_with_price.price).to eql(12)
     end
 
     it "raises error for invalid price" do
@@ -48,7 +55,7 @@ RSpec.describe Product do
 
   context "#price_with_vat" do
     it "return price with VAT" do
-      expect(Product.new(name: nil, price: 10).price_with_vat).to eql(12.3)
+      expect(product_with_price.price_with_vat).to eql(14.76)
     end
    end
 end

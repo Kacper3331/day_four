@@ -14,18 +14,21 @@ class Product
   def self.show_products(products)
     puts "List of products: "
     puts "======================================================================"
-    products.each do |x|
-      puts "ID: #{x.id} \t|\t NAME: #{x.name} \t|\t PRICE: #{x.price}"
+    products.each do |product|
+      puts "ID: #{product.id} \t|\t NAME: #{product.name} \t|\t PRICE: #{product.price}"
     end
   end
 
-  def self.discount(products, id, amount)
-    find_product = products.find{ |x| x.id == id }
-    find_product.price -= amount
+  def show_discount_product(amount)
+    discount(@price, amount)
     puts "======================================================================"
-    puts "\tNAME: #{find_product.name} \t|\t SPECIAL PRICE:  #{find_product.price} zl"
+    puts "\tNAME: #{@name} \t|\t SPECIAL PRICE:  #{@price} zl"
     puts "======================================================================"
     puts
+  end
+
+  def discount(price, amount)
+    price -= amount
   end
 
   def price_with_vat
