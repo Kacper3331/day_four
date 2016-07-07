@@ -21,7 +21,7 @@ RSpec.describe Product do
     end
   end
 
-  context ".discount" do
+  context "#discount" do
     it "compute discount of the price" do
       puts product_with_price
       expect(product_with_price.discount(price, amount)).to eql(10)

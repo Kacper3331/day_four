@@ -20,9 +20,9 @@ class Product
   end
 
   def show_discount_product(amount)
-    discount(@price, amount)
+    discount(price, amount)
     puts "======================================================================"
-    puts "\tNAME: #{@name} \t|\t SPECIAL PRICE:  #{@price} zl"
+    puts "\tNAME: #{name} \t|\t SPECIAL PRICE:  #{price} zl"
     puts "======================================================================"
     puts
   end
