@@ -25,13 +25,11 @@ class Basket
 
   def sum
     sum = @basket.map { |basket| basket.price }.reduce(0, :+)
-    puts "Sum: #{sum.round(2)} zl"
   end
 
   def sum_with_vat
     sum = @basket.map { |basket| basket.price }.reduce(0, :+)
     sum_vat = sum * 1.23
-    puts "Sum VAT: #{sum_vat}"
   end
 
   private
