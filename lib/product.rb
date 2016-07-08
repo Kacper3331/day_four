@@ -7,24 +7,16 @@ class Product
 
   def initialize(name:, price:)
     @id = new_id
-    @name = name
+    @name = set_name(name)
     @price = set_price(price)
   end
 
-  def self.show_products(products)
-    puts "List of products: "
-    puts "======================================================================"
-    products.each do |product|
-      puts "ID: #{product.id} \t|\t NAME: #{product.name} \t|\t PRICE: #{product.price}"
-    end
+  def show_product
+    "ID: #{id} \t|\t NAME: #{name} \t|\t PRICE: #{price}"
   end
 
   def show_discount_product(amount)
-    discount(price, amount)
-    puts "======================================================================"
-    puts "\tNAME: #{name} \t|\t SPECIAL PRICE:  #{price} zl"
-    puts "======================================================================"
-    puts
+    "\tNAME: #{name} \t|\t SPECIAL PRICE: #{discount(price, amount)} zl"
   end
 
   def discount(price, amount)
@@ -38,6 +30,11 @@ class Product
   private
   def new_id
     @@id += 1
+  end
+
+  def set_name(name)
+    raise ArgumentError unless name.is_a?(String)
+    name
   end
 
   def set_price(price)
