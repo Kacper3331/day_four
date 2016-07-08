@@ -1,7 +1,6 @@
-require_relative './product'
-require_relative './basket'
-require_relative './warehouse'
-
+require_relative "./product"
+require_relative "./basket"
+require_relative "./warehouse"
 
 product_1 = Product.new(name: "Chocolate", price: 9.99)
 product_2 = Product.new(name: "Milk Natural", price: 2.00)
@@ -34,11 +33,11 @@ puts
 puts "Your shopping"
 puts "======================================================================"
 
-basket = Basket.new
-puts "#{basket.add_product(products, 1, warehouses, 1)}"
-puts "#{basket.add_product(products, 2, warehouses, 1)}"
-puts "#{basket.remove_product(1, warehouses, 1)}"
-puts "#{basket.remove_product(1, warehouses, 1)}"
+basket = Basket.new(products: products, warehouses: warehouses)
+puts "#{basket.add_product(1, 1)}"
+puts "#{basket.add_product(2, 1)}"
+puts "#{basket.add_product(2, 1)}"
+puts "#{basket.remove_product(1, 1)}"
 
 puts "======================================================================"
 puts
