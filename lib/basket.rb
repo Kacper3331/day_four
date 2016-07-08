@@ -8,8 +8,8 @@ class Basket
   def add_product(products, id, warehouses, quantity)
     find_warehouse_product = find_warehouse(warehouses, id)
     if find_warehouse_product.amount != 0
-      add_produt_to_basket(products, id, warehouses, quantity)
       puts "Added to basket: #{find_product(products, id).name} in amount of #{quantity}"
+      add_product_to_basket(products, id, warehouses, quantity)
     else
       puts "You can't buy #{find_product(products, id).name}, not enough amount in warehouse"
     end
@@ -20,7 +20,7 @@ class Basket
     puts "Removed from basket: #{find_product(products, id).name} in amount of #{quantity}"
   end
 
-  def add_produt_to_basket(products, id, warehouses, quantity)
+  def add_product_to_basket(products, id, warehouses, quantity)
     @basket << find_product(products, id)
     find_warehouse(warehouses, id).amount -= quantity
   end
@@ -40,7 +40,7 @@ class Basket
 
   private
   def find_product(products, id)
-    find_product = products.find { |product| product.id == id }
+    products.find { |product| product.id == id }
   end
 
   def find_warehouse(warehouses, id)
