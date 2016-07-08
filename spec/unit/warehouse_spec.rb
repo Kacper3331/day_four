@@ -11,13 +11,13 @@ RSpec.describe Warehouse do
   end
 
   describe "#product_id " do
-    it "should returns 1 when 1 is given" do
+    it "returns 1 when 1 is given" do
       expect(warehouse.product_id).to eql(1)
     end
   end
 
   describe "#amount " do
-    it "should returns 10 when 10 is given" do
+    it "returns 10 when 10 is given" do
       expect(warehouse.amount).to eql(10)
     end
   end

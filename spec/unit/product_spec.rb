@@ -20,29 +20,29 @@ RSpec.describe Product do
   end
 
   describe "#show_product" do
-    it "should return information about product" do
+    it "return information about product" do
       expect(product.show_product).to eq("ID: 1 \t|\t NAME: Foo \t|\t PRICE: 12")
     end
   end
 
   describe "#show_discount_product" do
-    it "should return text with the discounted product" do
+    it "return text with the discounted product" do
       expect(product.show_discount_product(amount)).to eq("\tNAME: Foo \t|\t SPECIAL PRICE: 10 zl")
     end
   end
 
   describe "#discount" do
-    it "should compute discount of the price" do
+    it "compute discount of the price" do
       expect(product.discount(price, amount)).to eql(10)
     end
   end
 
   describe "#name" do
-    it "should returns foo when foo is given" do
+    it "returns foo when foo is given" do
       expect(Product.new(name: "foo", price: price).name).to eql("foo")
     end
 
-    it "should return a meessage when number is not string" do
+    it "return a meessage when number is not string" do
       expect{
         Product.new(name: 12, price: price).name
       }.to raise_error(ArgumentError)
@@ -50,11 +50,11 @@ RSpec.describe Product do
   end
 
   describe "#price" do
-    it "should returns 12 when 12 is given" do
+    it "returns 12 when 12 is given" do
       expect(product.price).to eql(12)
     end
 
-    it "should raises a error for invalid price" do
+    it "raises a error for invalid price" do
       expect{
        Product.new(name: "Foo", price: nil).price
      }.to raise_error(ArgumentError)
@@ -69,7 +69,7 @@ RSpec.describe Product do
   end
 
   describe "#price_with_vat" do
-    it "should return price with VAT" do
+    it "return price with VAT" do
       expect(product.price_with_vat).to eql(14.76)
     end
    end
