@@ -2,46 +2,61 @@ require_relative "../../lib/product.rb"
 
 RSpec.describe Product do
   let(:price) { 12 }
-  let(:product_with_price) { Product.new(name: nil, price: price) }
+  let(:product) { Product.new(name: "Foo", price: price) }
   let(:amount) { 2 }
 
   before { @@id = 0 }
 
-  it "has 2 params" do
+  it "Product should have 2 params" do
     expect{
       product_with_price
     }.to_not raise_error(ArgumentError)
   end
 
-# .name -> metoda klasowa, #name -> metoda instancyjna
-  context "#id" do
+  describe "#id" do
     it "returns id when product is generated" do
-      product_with_price
-      expect(product_with_price.id).to eql(1)
+      expect(product.id).to eql(1)
     end
   end
 
-  context "#discount" do
-    it "compute discount of the price" do
-      puts product_with_price
-      expect(product_with_price.discount(price, amount)).to eql(10)
+  describe "#show_product" do
+    it "should return information about product" do
+      expect(product.show_product).to eq("ID: 1 \t|\t NAME: Foo \t|\t PRICE: 12")
     end
   end
 
-  context "#name " do
-    it "returns foo when foo is given" do
+  describe "#show_discount_product" do
+    it "should return text with the discounted product" do
+      expect(product.show_discount_product(amount)).to eq("\tNAME: Foo \t|\t SPECIAL PRICE: 10 zl")
+    end
+  end
+
+  describe "#discount" do
+    it "should compute discount of the price" do
+      expect(product.discount(price, amount)).to eql(10)
+    end
+  end
+
+  describe "#name" do
+    it "should returns foo when foo is given" do
       expect(Product.new(name: "foo", price: price).name).to eql("foo")
     end
+
+    it "should return a meessage when number is not string" do
+      expect{
+        Product.new(name: 12, price: price).name
+      }.to raise_error(ArgumentError)
+    end
   end
 
-  context "#price" do
-    it "returns 12 when 12 is given" do
-      expect(product_with_price.price).to eql(12)
+  describe "#price" do
+    it "should returns 12 when 12 is given" do
+      expect(product.price).to eql(12)
     end
 
-    it "raises error for invalid price" do
+    it "should raises a error for invalid price" do
       expect{
-       Product.new(name: nil, price: nil).price
+       Product.new(name: "Foo", price: nil).price
      }.to raise_error(ArgumentError)
     end
 
@@ -53,9 +68,9 @@ RSpec.describe Product do
     end
   end
 
-  context "#price_with_vat" do
-    it "return price with VAT" do
-      expect(product_with_price.price_with_vat).to eql(14.76)
+  describe "#price_with_vat" do
+    it "should return price with VAT" do
+      expect(product.price_with_vat).to eql(14.76)
     end
    end
 end
