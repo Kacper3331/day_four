@@ -7,7 +7,7 @@ RSpec.describe Product do
 
   before { @@id = 0 }
 
-  it "Product should have 2 params" do
+  it "it has 2 params" do
     expect{
       product_with_price
     }.to_not raise_error(ArgumentError)
