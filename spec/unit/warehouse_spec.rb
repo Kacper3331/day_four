@@ -4,7 +4,7 @@ RSpec.describe Warehouse do
   let(:empty_warehouse) { Warehouse.new(product_id: nil, amount: nil) }
   let(:warehouse) { Warehouse.new(product_id: 1, amount: 10) }
 
-  it "it has 2 params" do
+  it "has 2 params" do
     expect{
       empty_warehouse
     }.to_not raise_error(ArgumentError)
