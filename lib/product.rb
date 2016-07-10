@@ -1,7 +1,7 @@
 class Product
-  attr_reader :name, :id
+  attr_reader :id
   attr_writer :quantity
-  attr_accessor :price
+  attr_accessor :price, :name
 
   @@id = 0
 
@@ -21,6 +21,11 @@ class Product
 
   def discount(price, amount)
     price -= amount
+  end
+
+  def update(parameters)
+    @name = parameters[:name] if !parameters[:name].nil?
+    @price = parameters[:price] if !parameters[:price].nil?
   end
 
   def price_with_vat

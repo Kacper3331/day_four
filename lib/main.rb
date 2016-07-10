@@ -9,12 +9,15 @@ product_4 = Product.new(name: "Toilet Paper", price: 8.88)
 
 products = [product_1, product_2, product_3, product_4]
 
-warehouses = [
-  Warehouse.new(product_id: 1, amount: 4),
-  Warehouse.new(product_id: 2, amount: 8),
-  Warehouse.new(product_id: 3, amount: 11),
-  Warehouse.new(product_id: 4, amount: 2)
-]
+warehouse_1 = Warehouse.new(product_id: 1, amount: 4)
+warehouse_2 = Warehouse.new(product_id: 2, amount: 4)
+warehouse_3 = Warehouse.new(product_id: 3, amount: 11)
+warehouse_4 = Warehouse.new(product_id: 4, amount: 2)
+
+warehouses = [warehouse_1, warehouse_2, warehouse_3, warehouse_4]
+
+product_1.update(price: 8.85)
+warehouse_1.update(amount: 1)
 
 puts "List of products: "
 puts "======================================================================"

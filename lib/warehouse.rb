@@ -6,4 +6,8 @@ class Warehouse
     @product_id = product_id
     @amount = amount
   end
+
+  def update(parameter)
+    @amount = parameter[:amount] if !parameter[:amount].nil?
+  end
 end

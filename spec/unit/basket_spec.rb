@@ -12,7 +12,7 @@ RSpec.describe Basket do
   let(:empty_basket) { Basket.new(products: products, warehouses: [empty_warehouses]) }
 
   it "has 2 params" do
-    expect{
+    expect {
       basket
     }.to_not raise_error(ArgumentError)
   end

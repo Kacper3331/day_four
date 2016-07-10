@@ -4,11 +4,15 @@ RSpec.describe Product do
   let(:price) { 12 }
   let(:product) { Product.new(name: "Foo", price: price) }
   let(:amount) { 2 }
+  let(:updated_name) { { name: "Foo_update" } }
+  let(:updated_price) { { price: 10 } }
+  let(:empty_name) { { name: nil } }
+  let(:empty_price) { { price: nil } }
 
   before { @@id = 0 }
 
   it "has 2 params" do
-    expect{
+    expect {
       product_with_price
     }.to_not raise_error(ArgumentError)
   end
@@ -31,6 +35,36 @@ RSpec.describe Product do
     end
   end
 
+  describe "#update" do
+    context "when parameters are provided" do
+      it "change the name of the product" do
+        expect {
+          product.update(updated_name)
+        }.to change{ product.name }.from("Foo").to("Foo_update")
+      end
+
+      it "update price of the product" do
+        expect {
+          product.update(updated_price)
+        }.to change{ product.price }.from(price).to(10)
+      end
+    end
+
+    context "when parameters are not provided" do
+      it "doesn\'t change name of the product" do
+        expect {
+          product.update(empty_name)
+        }.to_not change{ product.name }
+      end
+
+      it "doesn\'t change price of the product" do
+        expect {
+          product.update(empty_price)
+        }.to_not change{ product.price }
+      end
+    end
+  end
+
   describe "#discount" do
     it "compute discount of the price" do
       expect(product.discount(price, amount)).to eql(10)
@@ -43,7 +77,7 @@ RSpec.describe Product do
     end
 
     it "return a meessage when number is not string" do
-      expect{
+      expect {
         Product.new(name: 12, price: price).name
       }.to raise_error(ArgumentError)
     end
@@ -55,13 +89,13 @@ RSpec.describe Product do
     end
 
     it "raises a error for invalid price" do
-      expect{
+      expect {
        Product.new(name: "Foo", price: nil).price
      }.to raise_error(ArgumentError)
     end
 
     it "must be > 0" do
-      expect{
+      expect {
         product = Product.new(nil, -10)
         product.price
       }.to raise_error(ArgumentError)
