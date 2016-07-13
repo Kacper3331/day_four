@@ -22,6 +22,9 @@ module Store
   BASKET = []
 
   class App < Sinatra::Base
+    configure :test do
+      set :dump_errors, false
+    end
 
     get "/" do
       products = FetchProducts.new.call
