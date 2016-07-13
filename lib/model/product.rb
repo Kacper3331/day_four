@@ -2,14 +2,14 @@ module Store
   class Product
     attr_reader :id
     attr_writer :quantity
-    attr_accessor :price, :name
+    attr_accessor :price_netto, :name
 
     @@id = 0
 
-    def initialize(name, price)
+    def initialize(name, price_netto)
       @id = new_id
       @name = set_name(name)
-      @price = set_price(price)
+      @price_netto = set_price(price_netto)
     end
 
     def show_product
