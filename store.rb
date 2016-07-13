@@ -33,6 +33,7 @@ module Store
 
     get "/products/:id" do |product_id|
       product = FetchProduct.new.call(product_id)
+      halt 404 unless product
       slim :"products/show", locals: { product: product }
     end
 
