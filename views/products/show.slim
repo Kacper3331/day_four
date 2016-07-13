@@ -1,0 +1,13 @@
+doctype HTML
+html
+  title 
+    = product.name
+  body
+    h3 
+      = product.name
+    
+    h2 Add product to basket
+    form action="/basket" method="POST"
+      input type="hidden" name="product_id" value="#{product.id}"
+      input type="number" name="quantity" value=1
+      input.button type="submit" value="Add to basket"
