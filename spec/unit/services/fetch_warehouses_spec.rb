@@ -11,16 +11,15 @@ RSpec.describe Store::FetchWarehouses do
 
   subject(:warehouses) { Store::FetchWarehouses.new }
 
-  before do
+  before :all do
     Store::WAREHOUSE.clear
-    Store::WAREHOUSE << create_warehouse
   end
 
   describe "#call" do
-    let(:first_product) { create_warehouse.first }
+    let!(:warehouse_array) { Store::WAREHOUSE << create_warehouse }
 
     it "returns warehouse" do
-      expect(warehouses.call).to eq([create_warehouse])
+      expect(warehouses.call).to eq(warehouse_array)
     end
   end
 end

@@ -7,19 +7,20 @@ end
 
 RSpec.describe Store::CreateProduct do
   let(:name) { "Foo" }
-  let(:price) { 9.99 }
-  let(:add_product) { Store::Product.new(name, price) }
+  let(:price) { 10.0 }
+  let(:create_product) { Store::Product.new(name, price) }
 
-  subject(:create_product) { Store::CreateProduct.new }
+  subject(:product) { Store::CreateProduct.new }
 
   before do
     Store::PRODUCTS.clear
-    Store::PRODUCTS << add_product
   end
 
   describe "#call" do
+    let(:array_of_products) { Store::PRODUCTS << create_product }
+
     it "create new product" do
-      expect(create_product.call(name, price)).to eq(Store::PRODUCTS)
+      expect(product.call(name, price)).to eq(array_of_products)
     end
   end
 end

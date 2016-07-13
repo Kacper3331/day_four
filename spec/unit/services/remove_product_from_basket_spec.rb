@@ -9,18 +9,20 @@ end
 RSpec.describe Store::RemoveProductFromBasket do
   let(:product_id) { 1 }
   let(:quantity) { 10 }
-  let(:new_basket) { Store::Basket.new(product_id, quantity) }
+  let(:params) { 1 }
+  let(:create_basket) { Store::Basket.new(product_id: product_id, quantity: quantity) }
 
-  subject(:remove_product) { Store::RemoveProductFromBasket.new }
+  subject(:remove_product) { Store::RemoveProductFromBasket.new(params) }
 
   before do
     Store::BASKET.clear
-    Store::BASKET << new_basket
   end
 
   describe "#call" do
-    it "returnd empty array" do
-      expect(remove_product.call(product_id, quantity)).to eq([])
+    let(:basket_array) { Store::BASKET << create_basket }
+
+    it "returns empty array" do
+      expect(remove_product.call).to eq([])
     end
   end
 end

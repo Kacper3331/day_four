@@ -7,20 +7,19 @@ module Store
 end
 
 RSpec.describe Store::FetchProducts do
-  let(:create_product) { Store::Product.new("Foo", 9.99) }
+  let(:create_product) { Store::Product.new("Foo", 10.0) }
 
-  subject(:products) { Store::FetchProducts.new }
+  subject(:fetch_products) { Store::FetchProducts.new }
 
   before do
     Store::PRODUCTS.clear
-    Store::PRODUCTS << create_product
   end
 
   describe "#call" do
-    let(:first_product) { create_product.first }
+    let(:all_products) { Store::PRODUCTS << create_product }
 
     it "returns all products" do
-      expect(products.call).to eq(Store::PRODUCTS)
+      expect(fetch_products.call).to eq(all_products)
     end
   end
 end

@@ -8,19 +8,19 @@ end
 RSpec.describe Store::AddProductToBasket do
   let(:quantity) { 2 }
   let(:product_id) { 1 }
-  let(:create_basket) { Store::Basket.new(product_id, quantity) }
+  let(:new_basket) { Store::Basket.new(product_id: product_id, quantity: quantity) }
+  let(:params) { { "product_id" =>  product_id, "quantity" => quantity } }
 
-  subject(:add_product) { Store::AddProductToBasket.new }
+  subject(:add_product) { Store::AddProductToBasket.new(params) }
 
   before do
     Store::BASKET.clear
-    Store::BASKET << create_basket
+    Store::BASKET << new_basket
   end
 
   describe "#call" do
-
     it "adds product to basket" do
-      expect(add_product.call(product_id, quantity)).to eq(Store::BASKET)
+      expect(add_product.call).to eq(Store::BASKET)
     end
   end
 end
