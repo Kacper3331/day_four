@@ -15,10 +15,10 @@ RSpec.describe Store::FetchProducts do
   end
 
   describe "#call" do
-    let(:all_products) { Store::PRODUCTS << create_product }
+    let(:products) { Store::PRODUCTS << create_product }
 
     it "returns all products" do
-      expect(fetch_products.call).to eq(all_products)
+      expect(fetch_products.call).to eq(products)
     end
   end
 end

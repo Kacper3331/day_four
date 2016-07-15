@@ -6,19 +6,19 @@ require_relative "../../support/shared_examples/models"
 RSpec.describe Store::FetchWarehouseItems do
   include_examples :models
 
-  let(:create_warehouse) { Store::Warehouse.new(1, 2) }
+  let(:add_product_to_warehouse) { Store::Warehouse.new(1, 2) }
 
-  subject(:warehouses) { Store::FetchWarehouseItems.new }
+  subject(:fetch_warehouse_items) { Store::FetchWarehouseItems.new }
 
   before do
     Store::WAREHOUSE.clear
   end
 
   describe "#call" do
-    let!(:warehouse_array) { Store::WAREHOUSE << create_warehouse }
+    let!(:warehouse) { Store::WAREHOUSE << add_product_to_warehouse }
 
     it "returns information about all products in warehouse" do
-      expect(warehouses.call).to eq(warehouse_array)
+      expect(fetch_warehouse_items.call).to eq(warehouse)
     end
   end
 end

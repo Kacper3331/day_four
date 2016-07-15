@@ -14,10 +14,10 @@ RSpec.describe Store::FetchItemsFromBasket do
   let(:price_with_vat) { price * 1.23 }
   let(:total_price) { price * quantity }
   let(:total_price_with_vat) { total_price * 1.23}
-  let(:product) { Store::Product.new("Foo", 10.00) }
-  let(:create_basket) { Store::Basket.new(product_id: product.id, quantity: quantity) }
+  let(:create_product) { Store::Product.new("Foo", 10.00) }
+  let(:add_item_to_basket) { Store::Basket.new(product_id: create_product.id, quantity: quantity) }
   let(:result) { [
-    product: product,
+    product: create_product,
     id: @@id,
     quantity: quantity,
     price_with_vat: price_with_vat,
@@ -25,19 +25,19 @@ RSpec.describe Store::FetchItemsFromBasket do
     total_price_with_vat: total_price_with_vat
   ] }
 
-  subject(:basket) { Store::FetchItemsFromBasket.new }
+  subject(:fetch_items_from_basket) { Store::FetchItemsFromBasket.new }
 
   before do
     @@id = 0
     Store::BASKET.clear
     Store::PRODUCTS .clear
-    Store::PRODUCTS << product
-    Store::BASKET << create_basket
+    Store::PRODUCTS << create_product
+    Store::BASKET << add_item_to_basket
   end
 
   describe "#call" do
     it "returns information about items in basket" do
-      expect(basket.call).to eq(result)
+      expect(fetch_items_from_basket.call).to eq(result)
     end
   end
 end

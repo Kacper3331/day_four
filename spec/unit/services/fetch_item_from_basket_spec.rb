@@ -5,18 +5,18 @@ require_relative "../../support/shared_examples/models"
 RSpec.describe Store::FetchItemFromBasket do
   include_examples :models
 
-  let(:create_basket) { Store::Basket.new(product_id: 1, quantity: 1) }
+  let(:add_item_to_basket) { Store::Basket.new(product_id: 1, quantity: 1) }
 
   subject(:fetch_item_from_basket) { Store::FetchItemFromBasket.new }
 
   before do
     Store::BASKET.clear
-    Store::BASKET << create_basket
+    Store::BASKET << add_item_to_basket
   end
 
   describe "#call" do
     it "returns information about single item in basket" do
-      expect(fetch_item_from_basket.call(create_basket.id)).to eq(create_basket)
+      expect(fetch_item_from_basket.call(add_item_to_basket.id)).to eq(add_item_to_basket)
     end
   end
 end

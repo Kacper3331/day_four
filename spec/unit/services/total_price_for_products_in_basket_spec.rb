@@ -22,9 +22,9 @@ RSpec.describe Store::TotalPriceForProductsInBasket do
 
   describe "#call" do
     let(:create_product) { Store::Product.new("Foo", price) }
-    let(:create_basket) { Store::Basket.new(product_id: create_product.id, quantity: quantity) }
-    let!(:array_of_products) { Store::PRODUCTS << create_product }
-    let!(:basket_array) { Store::BASKET << create_basket }
+    let(:add_item_to_basket) { Store::Basket.new(product_id: create_product.id, quantity: quantity) }
+    let!(:products) { Store::PRODUCTS << create_product }
+    let!(:basket) { Store::BASKET << add_item_to_basket }
 
     it "returns total price for product" do
       expect(total_price.call).to eq(total_price_with_vat)

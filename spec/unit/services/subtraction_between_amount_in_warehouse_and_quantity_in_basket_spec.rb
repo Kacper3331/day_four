@@ -8,20 +8,20 @@ RSpec.describe Store::SubtractionBetweenAmountInWarehouseAndQuantityInBasket do
 
   let(:product_id) { 1 }
   let(:params) { { "product_id" => product_id, "quantity" => 1 } }
-  let(:create_warehouse) { Store::Warehouse.new(product_id, 1) }
+  let(:add_product_to_warehouse) { Store::Warehouse.new(product_id, 1) }
 
-  subject(:decrease_quantity) {
+  subject(:subtrack_amount_and_quantity) {
     Store::SubtractionBetweenAmountInWarehouseAndQuantityInBasket.new(params)
   }
 
   before do
     Store::WAREHOUSE.clear
-    Store::WAREHOUSE << create_warehouse
+    Store::WAREHOUSE << add_product_to_warehouse
   end
 
   describe "#call" do
     it "returns the result of the subtraction between amount and quantity when user adds product to basket" do
-      expect(decrease_quantity.call).to eq(0)
+      expect(subtrack_amount_and_quantity.call).to eq(0)
     end
   end
 end

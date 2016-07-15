@@ -9,21 +9,21 @@ RSpec.describe Store::SumOfAmountInWarehouseAndQuantityInBasket do
   include_examples :models
 
   let(:product_id) { 1 }
-  let(:create_warehouse) { Store::Warehouse.new(product_id, 1) }
-  let(:create_basket) { Store::Basket.new(product_id: product_id, quantity: 1) }
+  let(:add_product_to_warehouse) { Store::Warehouse.new(product_id, 1) }
+  let(:add_item_to_basket) { Store::Basket.new(product_id: product_id, quantity: 1) }
 
-  subject(:add_quantity) { Store::SumOfAmountInWarehouseAndQuantityInBasket.new(create_basket.id) }
+  subject(:sum_amount_and_quantity) { Store::SumOfAmountInWarehouseAndQuantityInBasket.new(add_item_to_basket.id) }
 
   before do
     Store::BASKET.clear
     Store::WAREHOUSE.clear
-    Store::WAREHOUSE << create_warehouse
-    Store::BASKET << create_basket
+    Store::WAREHOUSE << add_product_to_warehouse
+    Store::BASKET << add_item_to_basket
   end
 
   describe "#call" do
     it "returns sum of amount and quantity when user removes product from basket" do
-      expect(add_quantity.call).to eq(2)
+      expect(sum_amount_and_quantity.call).to eq(2)
     end
   end
 end
