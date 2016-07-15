@@ -1,13 +1,9 @@
-doctype HTML
-html
-  title 
-    = product.name
-  body
-    h3 
-      = product.name
-    
-    h2 Add product to basket
-    form action="/basket" method="POST"
-      input type="hidden" name="product_id" value="#{product.id}"
-      input type="number" name="quantity" value=1
-      input.button type="submit" value="Add to basket"
+h3 Add product to basket
+div
+  form action="/basket" method="POST" class="form-inline"
+    input type="hidden" name="product_id" value="#{product.id}"
+    div.form-group
+      label claas="control-label" style="margin-right: 10px; font-size: 17px;" Quantity:
+      input type="number" style="margin-right: 10px; width: 150px;" name="quantity" min="0" max="#{item_in_warehouse.amount}" value="0" class="form-control" 
+    div.form-group
+      input type="submit" class="btn btn-success" value="Add to basket"

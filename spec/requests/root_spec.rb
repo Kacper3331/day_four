@@ -13,12 +13,14 @@ RSpec.describe "GET /", type: :request do
     expect(last_response.headers["Content-Type"]).to include("text/html")
   end
 
-  it "returns h3 element with \'List of Available products:\' value" do
-    expect(last_response.body).to include("<h3>List of Available products:</h3>")
+  it "returns h3 element with \'List of Available products\' value" do
+    expect(last_response.body).to include("<h3>List of Available products</h3>")
   end
 
-  it "returns link to add first product to the basket" do
-    expect(last_response.body).to include("<a href=\"products/1\">Add</a>")
+  it "returns button to add first product to the basket" do
+    expect(last_response.body).to include(
+      "<a class=\"btn btn-success btn-large\" href=\"products/1\" style=\"width: auto\">Add to basket</a>"
+    )
   end
 
   private

@@ -11,8 +11,8 @@ RSpec.describe "GET /basket", type: :request do
       expect(last_response.status).to eq(200)
     end
 
-    it "contains total price value for products in basket eq to 0" do
-      expect(last_response.body).to include("<td align=\"right\" colspan=\"6\">Total:</td><td>0</td>")
+    it "contains h1 element with \`Your basket is empty\` value" do
+      expect(last_response.body).to include("<h1>Your basket is empty</h1>")
     end
   end
 
@@ -32,8 +32,8 @@ RSpec.describe "GET /basket", type: :request do
       expect(last_response.body).to include("<td>Chocolate</td>")
     end
 
-    it "contains total price value for products in basket eq to 12.29" do
-      expect(last_response.body).to include("<td align=\"right\" colspan=\"6\">Total:</td><td>12.29</td>")
+    it "contains total price value for products in basket eq to 12.29 zł" do
+      expect(last_response.body).to include("<td>Total: 12.29 zł</td>")
     end
 
     it "contains quantity value for product in basket eq to 1" do

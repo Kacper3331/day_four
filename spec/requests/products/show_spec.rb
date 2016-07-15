@@ -26,17 +26,13 @@ RSpec.describe "GET /products/:id", type: :request do
       expect(last_response.headers["Content-Type"]).to include("text/html")
     end
 
-    it "contains product name" do
-      expect(last_response.body).to include("#{product.name}")
-    end
-
-    it "contains h2 element with \'Add product to basket\' value" do
-      expect(last_response.body).to include("<h2>Add product to basket</h2>")
+    it "contains h3 element with \'Add product to basket\' value" do
+      expect(last_response.body).to include("<h3>Add product to basket</h3>")
     end
 
     it "contains button with \'Add to basket\' value" do
       expect(last_response.body).to include(
-        "<input class=\"button\" type=\"submit\" value=\"Add to basket\" />"
+        "<input class=\"btn btn-success\" type=\"submit\" value=\"Add to basket\" />"
       )
     end
   end

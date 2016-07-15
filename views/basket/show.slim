@@ -1,36 +1,41 @@
-doctype HTML
-html
-  title Basket
-  body
-    p 
-      a href= "/" Home
-    p 
-      a href= "/basket" Basket
-    table width="40%"
-      thead
-        tr
-          th ID
-          th Name
-          th Price
-          th Price with VAT
-          th Quantity
-          th Price Total
-          th Price Total with VAT
-      tbody
-        - basket.each_with_index do |item, index|
-          tr
-            td= index+1
-            td= item[:product].name
-            td= item[:product].price_netto
-            td= item[:price_with_vat]
-            td= item[:quantity]
-            td= item[:total_price]
-            td= item[:total_price_with_vat]
-            td 
-              form action="/basket/#{item[:id]}/delete" method="post"
-                input type="hidden" name="_method" value="DELETE"
-                input.button type="submit" value="Remove from Basket"
-        tfoot
-          tr
-            td align="right" colspan="6" Total:
-            td= summary
+h3 Your basket
+table.table.table-bordered
+  thead
+    tr
+      th Nr
+      th Name
+      th Netto
+      th Brutto
+      th Quantity
+      th Netto Total
+      th Brutto Total
+      th
+  tbody
+    - basket.each_with_index do |item, index|
+      tr
+        td= index+1
+        td= item[:product].name
+        td
+          = item[:product].price_netto
+          |  zł
+        td
+          = item[:price_with_vat]
+          |  zł
+        td= item[:quantity]
+        td
+          = item[:total_price]
+          |  zł
+        td
+          = item[:total_price_with_vat]
+          |  zł
+        td 
+          form action="/basket/#{item[:id]}/delete" method="post"
+            input type="hidden" name="_method" value="DELETE"
+            input.button class= "btn btn-danger btn-sm" type="submit" value="Remove from Basket"
+    tfoot
+      tr
+        td align="right" colspan="6" 
+        td 
+          | Total: 
+          = summary
+          |  zł

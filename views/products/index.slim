@@ -1,24 +1,18 @@
-doctype HTML
-html
-  title Product
-  body
-    p 
-      a href= "/" Home
-    p 
-      a href= "/basket" Basket
-    h3 List of Available products:
-    table width="20%"
-      thead
-        tr
-          th ID
-          th Name
-          th Price
-          th 
-      tbody
-        - products.each_with_index do |product, index|
-          tr
-            td = index+1
-            td = product.name
-            td = product.price_netto
-            td 
-              a href= "products/#{product.id}" Add
+h3 List of Available products
+table.table.table-bordered style="width: 30%" align="center"
+  thead
+    tr
+      th Nr
+      th Name
+      th Price
+      th 
+  tbody
+    - products.each_with_index do |product, index|
+      tr
+        td= index+1
+        td= product.name
+        td
+          = product.price_netto
+          |  zł
+        td 
+          a href= "products/#{product.id}" class="btn btn-success btn-large" style="width: auto" Add to basket
