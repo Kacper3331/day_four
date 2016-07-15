@@ -12,10 +12,10 @@ RSpec.describe "GET /products/:id", type: :request do
   end
 
   context "when product exist" do
-    let(:product) { Store::FetchProducts.new.call.first }
+    let(:first_product) { Store::FetchProducts.new.call.first }
 
     before do
-      do_request(product.id)
+      do_request(first_product.id)
     end
 
     it "returns 200 HTTP code" do

@@ -25,3 +25,21 @@ form {
 h1 {
   text-align: center;
 }
+
+.add_to_basket_link {
+  width: auto;
+}
+
+.quantity_label {
+  margin-right: 10px;
+  font-size: 17px;
+}
+
+.quantity_input {
+  margin-right: 10px;
+  min-width: 150px;
+}
+
+.table_of_available_products {
+  width: 30%;
+}

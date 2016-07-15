@@ -19,7 +19,7 @@ RSpec.describe "GET /", type: :request do
 
   it "returns button to add first product to the basket" do
     expect(last_response.body).to include(
-      "<a class=\"btn btn-success btn-large\" href=\"products/1\" style=\"width: auto\">Add to basket</a>"
+      "<a class=\"btn btn-success btn-large add_to_basket_link\" href=\"products/1\">Add to basket</a>"
     )
   end
 
