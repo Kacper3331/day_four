@@ -7,7 +7,7 @@ module Store
     def initialize(product_id:, quantity:)
       @id = set_id
       @product_id = product_id
-      @quantity = quantity
+      @quantity = set_quantity(quantity)
     end
 
     def fetch_product
@@ -30,6 +30,12 @@ module Store
     private
     def set_id
       @@id += 1
+    end
+
+    def set_quantity(quantity)
+      raise ArgumentError unless quantity.is_a?(Numeric)
+      raise ArgumentError if quantity <= 0
+      quantity
     end
   end
 end

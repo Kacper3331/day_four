@@ -7,7 +7,15 @@ RSpec.describe Store::Product do
   let(:price) { 12 }
   let(:create_product) { Store::Product.new("Foo", price) }
 
-  before { @@id = 0 }
+  before do
+    @@id = 0
+  end
+
+  it "has 2 arguments" do
+    expect {
+      create_product
+    }.to_not raise_error
+  end
 
   describe "#id" do
     it "returns id when product is generated" do
@@ -22,26 +30,25 @@ RSpec.describe Store::Product do
 
     it "return a meessage when number is not string" do
       expect {
-        Store::Product.new(12, price).name
+        Store::Product.new(12, price)
       }.to raise_error(ArgumentError)
     end
   end
 
-  describe "#price" do
-    it "returns 12 when 12 is given" do
+  describe "#price_netto" do
+    it "returns correctly set price netto" do
       expect(create_product.price_netto).to eql(12)
     end
 
     it "raises a error for invalid price" do
       expect {
-       Store::Product.new("Foo", nil).price_netto
+       Store::Product.new("Foo", nil)
      }.to raise_error(ArgumentError)
     end
 
-    it "must be > 0" do
+    it "must be greater than 0" do
       expect {
-        create_product = Store::Product.new(nil, -10)
-        create_product.price_netto
+        Store::Product.new("Foo", -10)
       }.to raise_error(ArgumentError)
     end
   end

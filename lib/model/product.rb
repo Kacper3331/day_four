@@ -23,7 +23,7 @@ module Store
 
     def set_price(price)
       raise ArgumentError unless price.is_a?(Numeric)
-      raise ArgumentError if price <= 0
+      raise ArgumentError if price < 0
       price
     end
   end
