@@ -26,6 +26,10 @@ module Store
       set :dump_errors, false
     end
 
+    configure do
+      enable :method_override
+    end
+
     get "/" do
       products = FetchProducts.new.call
       slim :"products/index", locals: { products: products }
@@ -51,7 +55,7 @@ module Store
       products_in_basket = FetchItemsFromBasket.new.call
       summary = TotalPriceForProductsInBasket.new.call
 
-      if !products_in_basket.empty?
+      if products_in_basket.any?
         slim :"basket/show", locals: { basket: products_in_basket, summary: summary }
       else
         slim :"basket/empty_basket"
