@@ -1,7 +1,6 @@
 module Store
   class Product
     attr_reader :id
-    attr_writer :quantity
     attr_accessor :price_netto, :name
 
     @@id = 0
@@ -10,11 +9,6 @@ module Store
       @id = new_id
       @name = set_name(name)
       @price_netto = set_price(price_netto)
-    end
-
-    def update(parameters)
-      @name = parameters[:name] if !parameters[:name].nil?
-      @price = parameters[:price] if !parameters[:price].nil?
     end
 
     private

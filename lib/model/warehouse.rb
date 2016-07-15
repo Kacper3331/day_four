@@ -11,10 +11,6 @@ module Store
       @amount = amount
     end
 
-    def update(parameter)
-      @amount = parameter[:amount] if !parameter[:amount].nil?
-    end
-
     private
     def new_id
       @@id += 1
