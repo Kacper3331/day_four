@@ -1,11 +1,10 @@
 require_relative "../../../lib/services/create_warehouse"
 require_relative "../../../lib/model/warehouse"
-
-module Store
-  WAREHOUSE = []
-end
+require_relative "../../support/shared_examples/models"
 
 RSpec.describe Store::CreateWarehouse do
+  include_examples :models
+
   let(:product_id) { 1 }
   let(:amount) { 10 }
   let(:create_warehouse) { Store::Warehouse.new(product_id, amount) }

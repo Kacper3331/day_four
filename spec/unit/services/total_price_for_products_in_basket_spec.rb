@@ -1,15 +1,13 @@
 require_relative "../../../lib/services/total_price_for_products_in_basket"
-require_relative "../../../lib/services/fetch_basket"
+require_relative "../../../lib/services/fetch_items_from_basket"
 require_relative "../../../lib/services/fetch_product"
 require_relative "../../../lib/model/basket"
 require_relative "../../../lib/model/product"
-
-module Store
-  BASKET =[]
-  PRODUCTS = []
-end
+require_relative "../../support/shared_examples/models"
 
 RSpec.describe Store::TotalPriceForProductsInBasket do
+  include_examples :models
+
   let(:product_id) { 1 }
   let(:quantity) { 10 }
   let(:price) { 10.00 }
@@ -17,7 +15,7 @@ RSpec.describe Store::TotalPriceForProductsInBasket do
 
   subject(:total_price) { Store::TotalPriceForProductsInBasket.new }
 
-  before :all do
+  before do
     Store::BASKET.clear
     Store::PRODUCTS.clear
   end
@@ -32,5 +30,4 @@ RSpec.describe Store::TotalPriceForProductsInBasket do
       expect(total_price.call).to eq(total_price_with_vat)
     end
   end
-
 end

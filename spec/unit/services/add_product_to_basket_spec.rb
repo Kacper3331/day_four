@@ -1,11 +1,10 @@
 require_relative "../../../lib/services/add_product_to_basket"
 require_relative "../../../lib/model/basket"
-
-module Store
-  BASKET = []
-end
+require_relative "../../support/shared_examples/models"
 
 RSpec.describe Store::AddProductToBasket do
+  include_examples :models
+
   let(:quantity) { 2 }
   let(:product_id) { 1 }
   let(:new_basket) { Store::Basket.new(product_id: product_id, quantity: quantity) }

@@ -1,18 +1,17 @@
-require_relative "../../../lib/services/fetch_warehouse"
+require_relative "../../../lib/services/fetch_warehouse_item"
 require_relative "../../../lib/services/create_warehouse"
 require_relative "../../../lib/model/warehouse"
+require_relative "../../support/shared_examples/models"
 
-module Store
-  WAREHOUSE = []
-end
+RSpec.describe Store::FetchWarehouseItem do
+  include_examples :models
 
-RSpec.describe Store::FetchWarehouse do
   let(:product_id) { 1 }
   let(:create_warehouse) { Store::Warehouse.new(product_id, 2) }
 
-  subject(:fetch_warehouse) { Store::FetchWarehouse.new }
+  subject(:fetch_warehouse) { Store::FetchWarehouseItem.new }
 
-  before :all do
+  before do
     Store::WAREHOUSE.clear
   end
 

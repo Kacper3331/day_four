@@ -1,12 +1,11 @@
 require_relative "../../../lib/services/remove_product_from_basket"
-require_relative "../../../lib/services/fetch_basket"
+require_relative "../../../lib/services/fetch_items_from_basket"
 require_relative "../../../lib/model/basket"
-
-module Store
-  BASKET = []
-end
+require_relative "../../support/shared_examples/models"
 
 RSpec.describe Store::RemoveProductFromBasket do
+  include_examples :models
+
   let(:product_id) { 1 }
   let(:quantity) { 10 }
   let(:params) { 1 }

@@ -33,25 +33,36 @@ module Store
 
     get "/products/:id" do |product_id|
       product = FetchProduct.new.call(product_id)
+      item_in_warehouse = FetchWarehouseItem.new.call(product_id)
+
       halt 404 unless product
-      slim :"products/show", locals: { product: product }
+
+      slim :"products/show", locals: { product: product, item_in_warehouse: item_in_warehouse }
     end
 
     post "/basket" do
+      SubtractionBetweenAmountInWarehouseAndQuantityInBasket.new(params).call
       AddProductToBasket.new(params).call
+
       redirect "/"
     end
 
     get "/basket" do
-      products_in_basket = FetchBasket.new.call
+      products_in_basket = FetchItemsFromBasket.new.call
       summary = TotalPriceForProductsInBasket.new.call
-      slim :"basket/show", locals: { basket: products_in_basket, summary: summary }
+
+      if !products_in_basket.empty?
+        slim :"basket/show", locals: { basket: products_in_basket, summary: summary }
+      else
+        slim :"basket/empty_basket"
+      end
     end
 
     delete "/basket/:id/delete" do
+      SumOfAmountInWarehouseAndQuantityInBasket.new(params[:id]).call
       RemoveProductFromBasket.new(params[:id]).call
+
       redirect "/"
     end
-
   end
 end

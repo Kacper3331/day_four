@@ -1,12 +1,11 @@
 require_relative "../../../lib/services/fetch_product"
 require_relative "../../../lib/services/create_product"
 require_relative "../../../lib/model/product"
-
-module Store
-  PRODUCTS = []
-end
+require_relative "../../support/shared_examples/models"
 
 RSpec.describe Store::FetchProduct do
+  include_examples :models
+
   subject(:fetch_product) { Store::FetchProduct.new }
 
   before do

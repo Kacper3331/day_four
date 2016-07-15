@@ -1,15 +1,13 @@
-require_relative "../../../lib/services/fetch_basket"
+require_relative "../../../lib/services/fetch_items_from_basket"
 require_relative "../../../lib/services/fetch_product"
 require_relative "../../../lib/services/add_product_to_basket"
 require_relative "../../../lib/model/basket"
 require_relative "../../../lib/model/product"
+require_relative "../../support/shared_examples/models"
 
-module Store
-  BASKET = []
-  PRODUCTS = []
-end
+RSpec.describe Store::FetchItemsFromBasket do
+  include_examples :models
 
-RSpec.describe Store::FetchBasket do
   let(:quantity) { 10 }
   let(:price) { 10.00 }
   let(:id) { 1 }
@@ -27,17 +25,18 @@ RSpec.describe Store::FetchBasket do
     total_price_with_vat: total_price_with_vat
   ] }
 
-  subject(:basket) { Store::FetchBasket.new }
+  subject(:basket) { Store::FetchItemsFromBasket.new }
 
   before do
     @@id = 0
     Store::BASKET.clear
+    Store::PRODUCTS .clear
     Store::PRODUCTS << product
     Store::BASKET << create_basket
   end
 
   describe "#call" do
-    it 'returns information about basket' do
+    it "returns information about items in basket" do
       expect(basket.call).to eq(result)
     end
   end

@@ -1,5 +1,5 @@
 module Store
-  class FetchWarehouses
+  class FetchWarehouseItems
     def call
       WAREHOUSE
     end
