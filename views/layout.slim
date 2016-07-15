@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Store
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" 
+    link rel="stylesheet" href="/stylesheets/application.css"
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+      div.container-fluid
+        ul.nav.navbar-nav
+          li
+            a href="/" Home
+          li
+            a href="/basket" Basket
+    == yield

@@ -1,0 +1,18 @@
+h3 List of Available products
+table.table.table-bordered.table_of_available_products align="center"
+  thead
+    tr
+      th Nr
+      th Name
+      th Price
+      th 
+  tbody
+    - products.each.with_index(1) do |product, index|
+      tr
+        td= index
+        td= product.name
+        td
+          = product.price_netto
+          |  zł
+        td 
+          a.btn.btn-success.btn-large.add_to_basket_link href= "products/#{product.id}" Add to basket

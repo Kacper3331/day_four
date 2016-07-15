@@ -1,0 +1,9 @@
+h3 Add product to basket
+div
+  form.form-inline action="/basket" method="POST"
+    input type="hidden" name="product_id" value="#{product.id}"
+    div.form-group
+      label.control-label.quantity_label Quantity:
+      input.form-control.quantity_input type="number" name="quantity" min="0" max="#{item_in_warehouse.amount}" value="0"
+    div.form-group
+      input.btn.btn-success type="submit" value="Add to basket"
